@@ -51,6 +51,8 @@ namespace FiatSharp.Examples.TicTacToe
         public override Move ReadJson(JsonReader reader, Type objectType, Move existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
+            if (reader.TokenType == JsonToken.Null) return null;
+
             JObject obj = JObject.Load(reader);
             
             switch (obj["type"].ToObject<string>())
