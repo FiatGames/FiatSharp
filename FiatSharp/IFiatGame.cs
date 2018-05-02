@@ -15,7 +15,7 @@ namespace FiatSharp
         bool IsPlayersTurn(FiatPlayer player, Settings settings, GameState<State, Move> state, Move move);
         bool IsMoveValid(FiatPlayer player, Settings settings, GameState<State, Move> state, Move move);
 
-        Tuple<ClientSettings, ClientState> ToClientSettingsAndState(FiatPlayer player, Settings settings,
+        Tuple<ClientSettings, GameState<ClientState,Move>> ToClientSettingsAndState(FiatPlayer player, Settings settings,
             GameState<State, Move> state);
 
     }

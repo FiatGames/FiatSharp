@@ -19,6 +19,8 @@ namespace API
         protected void Application_Start()
         {
             GlobalConfiguration.Configuration.MapHttpAttributeRoutes(new FiatSharp.RouteProviders.WebApiConfig.CustomDirectRouteProvider());
+            ConverterHelper.AddConverters<Settings, State, Move>(GlobalConfiguration.Configuration.Formatters
+                .JsonFormatter.SerializerSettings.Converters);
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -29,10 +31,6 @@ namespace API
                 .Add(new MoveConverter());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters
                 .Add(new StringEnumConverter());
-
-            
-            ConverterHelper.AddConverters<Settings, State, Move>(GlobalConfiguration.Configuration.Formatters
-                .JsonFormatter.SerializerSettings.Converters);
         }
     }
 }

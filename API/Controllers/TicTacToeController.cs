@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
 using FiatSharp;
+using FiatSharp.Controllers;
 using FiatSharp.Examples.TicTacToe;
 
 namespace API.Controllers

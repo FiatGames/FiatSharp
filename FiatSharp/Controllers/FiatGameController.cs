@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using FiatSharp;
-using FiatSharp.Examples.TicTacToe;
 
-namespace API.Controllers
+namespace FiatSharp.Controllers
 {
     public abstract class FiatGameController<Settings,State,Move,ClientSettings,ClientState> : ApiController
     {
@@ -47,6 +41,12 @@ namespace API.Controllers
         public bool PostIsMoveValid([FromBody] MakeMoveRequest<Settings, State, Move> req)
         {
             return GetFiatGame().IsMoveValid(req.player, req.settings, req.state, req.move);
+        }
+
+        [Route("~/toClientSettingsAndState")]
+        public Tuple<ClientSettings,GameState<ClientState,Move>> PostToClientSettingsAndState([FromBody] MakeMoveRequest<Settings, State, Move> req)
+        {
+            return GetFiatGame().ToClientSettingsAndState(req.player, req.settings, req.state);
         }
     }
 }
