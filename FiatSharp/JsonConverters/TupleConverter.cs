@@ -8,7 +8,13 @@ namespace FiatSharp.JsonConverters
     {
         public override void WriteJson(JsonWriter writer, Tuple<T1, T2> value, JsonSerializer serializer)
         {
-            JArray a = new JArray(JToken.FromObject(value.Item1, serializer), JToken.FromObject(value.Item2, serializer));
+            var v1 = value.Item1 == null
+                ? null
+                : JToken.FromObject(value.Item1, serializer);
+            var v2 = value.Item2 == null
+                ? null
+                : JToken.FromObject(value.Item2, serializer);
+            JArray a = new JArray(v1, v2);
             a.WriteTo(writer);
         }
 

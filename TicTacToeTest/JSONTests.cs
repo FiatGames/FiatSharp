@@ -37,6 +37,15 @@ namespace TicTacToeTest
         }
 
         [TestMethod]
+        public void NullTuple()
+        {
+            Tuple<string, string> t = new Tuple<string, string>(null, "a");
+            string res = "[null,\"a\"]";
+
+            Assert.AreEqual(res, JsonConvert.SerializeObject(t, new TupleConverter<string,string>()));
+        }
+
+        [TestMethod]
         public void GameStateTest()
         {
             DateTime dt = new DateTime(2018, 5, 1, 14, 37, 0);
