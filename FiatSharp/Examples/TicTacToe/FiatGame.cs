@@ -104,8 +104,10 @@ namespace FiatSharp.Examples.TicTacToe
 
         public Tuple<Settings, GameState<State,Move>> ToClientSettingsAndState(FiatPlayer player, Settings settings, GameState<State, Move> state)
         {
-            return new Tuple<Settings, GameState<State, Move>>(settings,
-                new GameState<State, Move> {State = state.State, FutureMove = state.FutureMove, Stage = state.Stage});
+            var s = state == null
+                ? null
+                : new GameState<State, Move> {State = state.State, FutureMove = state.FutureMove, Stage = state.Stage};
+            return new Tuple<Settings, GameState<State, Move>>(settings,s);
         }
     }
 }
