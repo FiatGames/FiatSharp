@@ -13,7 +13,7 @@ namespace FiatSharp.Examples.TicTacToe
             {
                 Players = new List<FiatPlayer>(),
                 XPlayer = null,
-                YPlayer = null,
+                OPlayer = null,
                 TimePerMove = TimeSpan.FromMinutes(1)
             };
         }
@@ -43,7 +43,7 @@ namespace FiatSharp.Examples.TicTacToe
             else
             {
                 settings.XPlayer = settings.Players[0];
-                settings.XPlayer = settings.Players[1];
+                settings.OPlayer = settings.Players[1];
                 return new InitialGameStateResult<Settings, State, Move>
                 {
                     InitialGameState =
@@ -66,7 +66,11 @@ namespace FiatSharp.Examples.TicTacToe
         public GameState<State, Move> MakeMove(FiatPlayer player, Settings settings, GameState<State, Move> state, Move move)
         {
             move.MakeMove(state.State);
-            if(state.State.Winner != null || state.State.Tied) state.Stage = GameStage.Done;
+            if (state.State.Winner != null || state.State.Tied)
+            {
+                state.Stage = GameStage.Done;
+                state.FutureMove = null;
+            }
             if (state.Stage == GameStage.Playing)
                 state.FutureMove = new FutureMove<Move>
                 {
@@ -79,8 +83,8 @@ namespace FiatSharp.Examples.TicTacToe
         public bool IsPlayersTurn(FiatPlayer player, Settings settings, GameState<State, Move> state, Move move)
         {
             Player? p = null;
-            if(settings.XPlayer == player) p = Player.X;
-            if (settings.YPlayer == player) p = Player.O;
+            if(settings.XPlayer.Equals(player)) p = Player.X;
+            if (settings.OPlayer.Equals(player)) p = Player.O;
             return p == state.State.Turn;
         }
 

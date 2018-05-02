@@ -2,15 +2,8 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace FiatSharp
+namespace FiatSharp.JsonConverters
 {
-    public class InitialGameStateResult<Settings,State,Move>
-    {
-        public bool IsError => !String.IsNullOrEmpty(Error);
-        public string Error { get; set; }
-        public Tuple<Settings,GameState<State,Move>> InitialGameState { get; set; }
-    }
-
     public class InitialGameStateResultConverter<Settings,State,Move> : JsonConverter<InitialGameStateResult<Settings, State, Move>>
     {
         public override void WriteJson(JsonWriter writer, InitialGameStateResult<Settings, State, Move> value, JsonSerializer serializer)

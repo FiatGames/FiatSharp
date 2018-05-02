@@ -24,7 +24,7 @@ namespace FiatSharp.Examples.TicTacToe
             };
         }
 
-        private static IEnumerable<HashSet<Spot>> _winningLines =
+        private static readonly IEnumerable<HashSet<Spot>> WinningLines =
             new List<HashSet<Spot>>
             {
                 new HashSet<Spot> {Spot.UL, Spot.UM, Spot.UR},
@@ -45,7 +45,7 @@ namespace FiatSharp.Examples.TicTacToe
             var xPieces = Board.Where(kvp => kvp.Value == Player.X).Select(kvp => (int)kvp.Key).ToList();
             var oPieces = Board.Where(kvp => kvp.Value == Player.O).Select(kvp => (int)kvp.Key).ToList();
 
-            List<HashSet<int>> wInts = _winningLines.Select(w => new HashSet<int>(w.Cast<int>())).ToList();
+            List<HashSet<int>> wInts = WinningLines.Select(w => new HashSet<int>(w.Cast<int>())).ToList();
             if(wInts.Any(w => xPieces.Permute(3).Any(w.SetEquals))) return Player.X;
             if (wInts.Any(w => oPieces.Permute(3).Any(w.SetEquals))) return Player.O;
             return null;

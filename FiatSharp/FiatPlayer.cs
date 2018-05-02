@@ -1,39 +1,30 @@
 ﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FiatSharp
 {
-    public class FiatPlayer
+    public class FiatPlayer : IEquatable<FiatPlayer>
     {
         public bool IsSystem => Id == null;
         public int? Id { get; set; }
-    }
 
-    public class FiatPlayerConverter : JsonConverter<FiatPlayer>
-    {
-        public override void WriteJson(JsonWriter writer, FiatPlayer value, JsonSerializer serializer)
+        public bool Equals(FiatPlayer other)
         {
-            JObject t = value.IsSystem
-                ? (JObject)JToken.FromObject(new { tag = "System" })
-                : (JObject)JToken.FromObject(new { tag = "FiatPlayer", contents = value.Id });
-
-            t.WriteTo(writer);
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Id == other.Id;
         }
 
-        public override FiatPlayer ReadJson(JsonReader reader, Type objectType, FiatPlayer existingValue, bool hasExistingValue,
-            JsonSerializer serializer)
+        public override bool Equals(object obj)
         {
-            JObject obj = JObject.Load(reader);
-            switch (obj["tag"].ToObject<string>())
-            {
-                case "System":
-                    return new FiatPlayer { Id = null };
-                case "FiatPlayer":
-                    return new FiatPlayer { Id = obj["contents"].ToObject<int>() };
-            }
-            throw new Exception("Not valid FiatPlayer JSON");
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((FiatPlayer) obj);
         }
 
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }
