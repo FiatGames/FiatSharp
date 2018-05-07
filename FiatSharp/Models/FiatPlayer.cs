@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FiatSharp
+namespace FiatSharp.Models
 {
     public class FiatPlayer : IEquatable<FiatPlayer>
     {

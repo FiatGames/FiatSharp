@@ -1,4 +1,6 @@
 using System;
+using FiatSharp.Models;
+using FiatSharp.Models.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

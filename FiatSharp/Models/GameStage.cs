@@ -1,6 +1,4 @@
-using Newtonsoft.Json.Linq;
-
-namespace FiatSharp
+namespace FiatSharp.Models
 {
     public enum GameStage { SettingUp, Playing, Done }
 }

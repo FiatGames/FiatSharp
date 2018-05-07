@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FiatSharp;
+using FiatSharp.Models;
 
 namespace FiatSharp.Examples.TicTacToe
 {

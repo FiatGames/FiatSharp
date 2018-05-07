@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Http;
+using FiatSharp.Models;
+using FiatSharp.Models.Http;
 
 namespace FiatSharp.Controllers
 {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FiatSharp.Models.Http;
 
-namespace FiatSharp
+namespace FiatSharp.Models
 {
     public interface IFiatGame<Settings, State, Move, ClientSettings, ClientState>
     {

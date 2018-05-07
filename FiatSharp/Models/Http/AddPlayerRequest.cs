@@ -1,4 +1,4 @@
-﻿namespace FiatSharp
+﻿namespace FiatSharp.Models.Http
 {
     public class AddPlayerRequest<S>
     {

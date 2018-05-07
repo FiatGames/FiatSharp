@@ -1,7 +1,4 @@
-using System.Runtime.Remoting.Messaging;
-using Newtonsoft.Json.Converters;
-
-namespace FiatSharp
+namespace FiatSharp.Models
 {
     public class GameState<S, M>
     {
